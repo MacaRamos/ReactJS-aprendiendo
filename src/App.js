@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+
+
+
+class HelloWorld extends Component{
+
+  state = {
+    show: true
+  }
+
+  toggleShow = () =>{
+    this.setState({show: !this.state.show});
+  }
+
+  render(){
+    if (this.state.show) {
+      return(
+        <div id="hello"><h1>{this.props.mytext}</h1>
+          {this.props.subtitule}
+          <button onClick={this.toggleShow} >Toggle show</button>
+        </div>
+      );
+    } else {
+      return(
+        <div>No hay nada que mostrar
+        <button onClick={this.toggleShow} >Toggle show</button>
+        </div>
+      );
+    }
+  }
+}
 
 function App() {
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      Este es mi primer componenete en ReactJS:
+      <HelloWorld mytext="componente 1" subtitule="chao componente"/>
+      <HelloWorld mytext="componente 2" subtitule="chao componente 2"/>
+      <HelloWorld mytext="componente 3" subtitule="chao componente 3"/>
     </div>
   );
 }
