@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 class Task extends Component {
 
@@ -15,11 +16,15 @@ class Task extends Component {
     return (
       <p style={this.StyleCompleted()}>
         {task.title} - {task.description} - {task.done} - {task.id}
-        <input type="checkbox"></input>
-        <button style={btnDelete}>x</button>
+        <input type="checkbox" onChange={this.props.checkDone.bind(this, task.id)}></input>
+        <button style={btnDelete} onClick={this.props.deleteTask.bind(this, task.id)}>x</button>
       </p>
     );
   }
+}
+
+Task.propTypes = {
+  task: PropTypes.object.isRequired
 }
 //Puedo crear constantes o variables en cuaquier parte del archivo js y
 //llamarlo en cualquier parte sin this (incluso dentro de una clase),
